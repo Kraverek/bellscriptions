@@ -1,0 +1,19 @@
+version: '1.0'
+
+services:
+  bellscoin-node:
+    container_name: bellscoin-node
+    image: bellscoin-node:latest
+    command: ["/bells-2.0.0/bin/bellsd", "-printtoconsole", "-datadir=/mnt/nvme_data/bellscoin_data", "-conf=/bellscoin/bells.conf"]
+    volumes:
+      - /mnt/nvme_data/bellscoin_data:/mnt/nvme_data/bellscoin_data
+      - /home/kraverek/docker/bellscoin/bells.conf:/bellscoin/bells.conf
+    ports:
+      - "19918:19918"
+      - "19919:19919"
+    stdin_open: true
+    tty: true
+
+networks:
+  default:
+    driver: bridge
